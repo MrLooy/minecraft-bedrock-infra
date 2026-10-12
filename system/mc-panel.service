@@ -1,0 +1,22 @@
+[Unit]
+Description=Panel web PWA de administración del servidor Minecraft
+After=network.target
+
+[Service]
+Type=simple
+User=mcpanel
+Group=mcpanel
+WorkingDirectory=/opt/mcserver/panel
+Environment=MC_CONF=/opt/mcserver/config/mc.conf
+Environment=PYTHONUNBUFFERED=1
+ExecStart=/opt/mcserver/panel/venv/bin/python /opt/mcserver/panel/app.py
+Restart=on-failure
+RestartSec=5
+# El panel toca systemctl/restart_server.sh (sudo restringido) y lee journal.
+# OJO (D-33): NO usar NoNewPrivileges=true aquí — bloquea sudo y deja los
+# botones de start/stop/restart mudos. La seguridad la da el sudoers scoped.
+ProtectSystem=full
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

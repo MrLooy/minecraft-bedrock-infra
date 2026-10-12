@@ -1,0 +1,17 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "bp_rules",
+    "description": "Reglas del mundo: PVP on, keepInventory, gamerules al cargar (tick.json + bandera de scoreboard)",
+    "uuid": "7b2e5d9c-1f3a-4c8d-a6e4-2f9b0c7d4e01",
+    "version": [1, 0, 1],
+    "min_engine_version": [1, 21, 0]
+  },
+  "modules": [
+    {
+      "type": "data",
+      "uuid": "7b2e5d9c-1f3a-4c8d-a6e4-2f9b0c7d4e02",
+      "version": [1, 0, 1]
+    }
+  ]
+}

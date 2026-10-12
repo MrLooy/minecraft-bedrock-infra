@@ -1,0 +1,17 @@
+[Unit]
+Description=Bot Telegram de gestión del servidor Minecraft (D-28)
+After=network-online.target mc.service
+Wants=network-online.target
+
+[Service]
+User=mcpanel
+Group=mcpanel
+WorkingDirectory=/opt/mcserver/bot
+# source mc.conf para que el bot vea token/admins/consola sin repetir rutas
+ExecStart=/bin/bash -c 'source /opt/mcserver/config/mc.conf && exec /usr/bin/python3 /opt/mcserver/bot/telegram_bot.py'
+Restart=on-failure
+RestartSec=10
+Environment=PYTHONUNBUFFERED=1
+
+[Install]
+WantedBy=multi-user.target

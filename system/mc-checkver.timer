@@ -1,0 +1,11 @@
+[Unit]
+Description=Buscar actualizaciones de BDS cada 6 h
+
+[Timer]
+OnBootSec=10min
+OnUnitInactiveSec=6h
+Persistent=true
+RandomizedDelaySec=10m
+
+[Install]
+WantedBy=timers.target

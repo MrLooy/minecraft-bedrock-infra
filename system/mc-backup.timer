@@ -1,0 +1,10 @@
+[Unit]
+Description=Backup diario del servidor Minecraft (04:00 America/Lima)
+
+[Timer]
+OnCalendar=*-*-* 04:00:00 America/Lima
+Persistent=true
+RandomizedDelaySec=15m
+
+[Install]
+WantedBy=timers.target

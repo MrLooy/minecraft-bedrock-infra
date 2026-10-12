@@ -1,0 +1,29 @@
+[Unit]
+Description=Minecraft Bedrock Dedicated Server (BDS)
+After=network-online.target
+Wants=network-online.target mc.socket
+
+[Service]
+Type=simple
+User=mcserver
+Group=mcserver
+WorkingDirectory=/opt/mcserver
+ExecStart=/opt/mcserver/bedrock_server
+# stdin <- FIFO mc-console.sock (modules/consola.sh escribe aquí)
+Sockets=mc.socket
+StandardInput=socket
+StandardOutput=journal
+StandardError=journal
+Environment=LD_LIBRARY_PATH=/opt/mcserver
+Restart=on-failure
+RestartSec=10
+# Si BDS roza 3.5 GiB en un VPS de 4 GiB, frenar antes de morir (D-13)
+MemoryMax=3500M
+MemoryHigh=3200M
+LimitNOFILE=65535
+SyslogIdentifier=bedrock
+KillSignal=SIGTERM
+TimeoutStopSec=30
+
+[Install]
+WantedBy=multi-user.target

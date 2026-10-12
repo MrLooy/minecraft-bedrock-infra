@@ -1,0 +1,13 @@
+[Unit]
+Description=Consola in-game del BDS (FIFO -> stdin del servicio)
+DefaultDependencies=no
+
+[Socket]
+ListenFIFO=/run/mc-console.sock
+SocketMode=0660
+SocketUser=mcserver
+SocketGroup=mcserver
+RemoveOnStop=true
+
+[Install]
+WantedBy=sockets.target

@@ -1,0 +1,9 @@
+[Unit]
+Description=Backup diario del servidor Minecraft
+
+[Service]
+Type=oneshot
+Nice=19
+IOSchedulingClass=idle
+Environment=MC_CONF=/opt/mcserver/config/mc.conf
+ExecStart=/opt/mcserver/modules/backup.sh

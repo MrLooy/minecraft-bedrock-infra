@@ -1,0 +1,8 @@
+[Unit]
+Description=Buscar actualizaciones de BDS (D-11)
+
+[Service]
+Type=oneshot
+Environment=MC_CONF=/opt/mcserver/config/mc.conf
+# Solo alerta; --stage prepara staging cuando el admin lo pida:
+ExecStart=/opt/mcserver/modules/check_version.sh

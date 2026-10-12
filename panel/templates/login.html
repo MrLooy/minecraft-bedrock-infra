@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0f1115">
+<title>Panel · Servidor Peru</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<style>
+:root{--bg:#0f1115;--card:#171a21;--line:#262b36;--fg:#e7ebf3;--mut:#8b93a7;--ok:#3ddc84;--bad:#ff5c5c;--acc:#4c8dff}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;display:flex;min-height:100vh;align-items:center;justify-content:center}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;width:min(92vw,360px)}
+h1{font-size:19px;margin:0 0 4px}
+p.m{color:var(--mut);font-size:13px;margin:0 0 18px}
+label{display:block;font-size:13px;color:var(--mut);margin:12px 0 4px}
+input{width:100%;padding:11px 12px;border-radius:9px;border:1px solid var(--line);background:#0c0e13;color:var(--fg);font-size:15px}
+input:focus{outline:2px solid var(--acc);border-color:transparent}
+button{width:100%;margin-top:18px;padding:12px;border:0;border-radius:9px;background:var(--acc);color:#fff;font-size:15px;font-weight:600;cursor:pointer}
+.flash{background:#2a1520;border:1px solid #5c2233;color:#ffb4c4;padding:9px 11px;border-radius:8px;font-size:13px;margin-bottom:10px}
+h1{display:flex;align-items:center;gap:9px}
+h1 svg{width:20px;height:20px;flex:0 0 auto}
+</style>
+</head>
+<body>
+<form class="card" method="post" action="/login">
+  <h1><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="3" width="20" height="8" rx="2"/><rect x="2" y="13" width="20" height="8" rx="2"/><line x1="6" y1="7" x2="6.01" y2="7"/><line x1="6" y1="17" x2="6.01" y2="17"/></svg> Panel del servidor</h1>
+  <p class="m">Servidor Bedrock · Peru</p>
+  {% with msgs = get_flashed_messages() %}
+    {% for m in msgs %}<div class="flash">{{ m }}</div>{% endfor %}
+  {% endwith %}
+  <input type="hidden" name="csrf" value="{{ csrf }}">
+  <label>Usuario</label>
+  <input name="username" autocomplete="username" autofocus required>
+  <label>Contraseña</label>
+  <input name="password" type="password" autocomplete="current-password" required>
+  <button type="submit">Entrar</button>
+</form>
+</body>
+</html>

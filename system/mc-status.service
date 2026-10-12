@@ -1,0 +1,8 @@
+[Unit]
+Description=Contador de jugadores para Discord (cola Q1)
+
+[Service]
+Type=oneshot
+Environment=MC_CONF=/opt/mcserver/config/mc.conf
+ExecStart=/opt/mcserver/modules/status.sh --webhook
+ExecStart=/opt/mcserver/modules/valida_offline.sh --watch

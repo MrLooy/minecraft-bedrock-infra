@@ -1,0 +1,10 @@
+[Unit]
+Description=Publica el contador de jugadores en Discord (cada 5 min)
+
+[Timer]
+OnBootSec=2min
+OnUnitInactiveSec=5min
+Persistent=false
+
+[Install]
+WantedBy=timers.target

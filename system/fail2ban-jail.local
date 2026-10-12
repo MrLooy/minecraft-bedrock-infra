@@ -1,0 +1,19 @@
+# fail2ban — endurece SSH y el panel (D-17)
+[sshd]
+enabled  = true
+port     = ssh
+filter   = sshd
+logpath  = /var/log/auth.log
+maxretry = 5
+bantime  = 1h
+findtime = 10m
+
+# Panel: intentos de login fallidos (el panel escribe aquí)
+[mc-panel]
+enabled  = true
+port     = http,https
+filter   = mc-panel
+logpath  = /opt/mcserver/logs/panel-auth.log
+maxretry = 5
+bantime  = 30m
+findtime = 10m

@@ -1,0 +1,17 @@
+# sudoers.d/mc-panel — el panel (usuario mcpanel) SOLO puede lo siguiente
+Defaults:mcpanel !requiretty
+mcpanel ALL=(root) NOPASSWD: /usr/bin/systemctl is-active mc, /usr/bin/systemctl is-enabled mc, /usr/bin/systemctl start mc, /usr/bin/systemctl stop mc, /usr/bin/systemctl restart mc, /usr/bin/systemctl status mc, /usr/bin/journalctl -u mc *
+mcpanel ALL=(root) NOPASSWD: /opt/mcserver/modules/update.sh --prod --yes
+# D-33: reinicio ASEGURADO (controller único del arranque/parada del BDS)
+mcpanel ALL=(root) NOPASSWD: /opt/mcserver/modules/restart_server.sh start
+mcpanel ALL=(root) NOPASSWD: /opt/mcserver/modules/restart_server.sh stop
+mcpanel ALL=(root) NOPASSWD: /opt/mcserver/modules/restart_server.sh restart
+# D-34: gestión de OP in-game desde el panel (solo root del panel lo invoca)
+mcpanel ALL=(root) NOPASSWD: /opt/mcserver/modules/game_admin.sh list
+mcpanel ALL=(root) NOPASSWD: /opt/mcserver/modules/game_admin.sh op *
+mcpanel ALL=(root) NOPASSWD: /opt/mcserver/modules/game_admin.sh deop *
+mcpanel ALL=(root) NOPASSWD: /opt/mcserver/modules/game_admin.sh survival *
+mcpanel ALL=(root) NOPASSWD: /opt/mcserver/modules/game_admin.sh deop-all-except *
+# D-43: operaciones tipo Aternos desde el panel. El script valida sus propios
+# argumentos (allowlist/props/backups/worlds) y claves de server.properties.
+mcpanel ALL=(root) NOPASSWD: /opt/mcserver/modules/panel_admin.sh *
